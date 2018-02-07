@@ -1,3 +1,5 @@
+## MILAD KHARRATZADEH - FEB 2018
+
 library(plyr)
 map_to_score <- function(x) { 
   x_max <- max(x);   x_min <- min(x);

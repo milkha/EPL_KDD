@@ -9,6 +9,7 @@ data {
   vector[ngames] score_diff;    // home_goals - away_goals
   row_vector[nteams] prev_perf; // a score between -1 and +1
 }
+
 parameters {
   real b_home; // the effect of hosting the game in mean of score_diff dist.
   real b_prev;                         // regression coefficient of prev_perf
@@ -19,6 +20,7 @@ parameters {
   row_vector<lower=0>[nteams] sigma_a_raw; // game-to-game variation
   matrix[nweeks,nteams] eta_a;         // random component
 }
+
 transformed parameters {
   matrix[nweeks, nteams] a;                        // team abilities
   row_vector<lower=0>[nteams] sigma_a; // game-to-game variation
@@ -28,6 +30,7 @@ transformed parameters {
     a[w] = a[w-1] + sigma_a .* eta_a[w];           // evolution of abilities
   }
 }
+
 model {
   vector[ngames] a_diff;
   // Priors
@@ -45,6 +48,7 @@ model {
   }
   score_diff ~ student_t(nu, a_diff + b_home, sigma_y);
 }
+
 generated quantities {
   vector[ngames] score_diff_rep;
   for (g in 1:ngames)
