@@ -1,4 +1,4 @@
-## A Hierarchical Bayesian Model for Predicting Soccer Matches
+## A Hierarchical Bayesian Model for Predicting Soccer Results
 
 ### With Application to the English Premier League
 
